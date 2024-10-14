@@ -1,0 +1,23 @@
+.small-box {
+    height: 200px; /* Mengubah tinggi box */
+    padding: 20px; /* Menambah padding di dalam box */
+    width: 100%; /* Menyesuaikan lebar box */
+    box-sizing: border-box; /* Agar padding tidak mempengaruhi ukuran keseluruhan */
+}
+
+.small-box .inner {
+    padding-top: 10px;
+}
+
+.small-box .icon {
+    top: 20px;
+    font-size: 60px;
+}
+
+.small-box h3 {
+    font-size: 40px;
+}
+
+.small-box p {
+    font-size: 20px;
+}
