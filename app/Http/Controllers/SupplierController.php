@@ -59,11 +59,27 @@ class SupplierController extends Controller
     // Menampilkan form edit supplier
     public function edit($id)
 {
+    // Cari supplier berdasarkan ID
     $supplier = Supplier::findOrFail($id);
-
-    // Debug dengan dd untuk memeriksa apakah data supplier benar-benar diteruskan
     
-
     return view('masterdata.edit_supplier', compact('supplier'));
 }
+
+public function update(Request $request, $id)
+{
+        // Validasi dan update material
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'nomor_handphone' => 'nullable|string|max:15',
+            'alamat' => 'required|string',
+        ]);
+
+        $supplier = Supplier::findOrFail($id);
+        $supplier->update($request->all());
+
+    // Redirect ke halaman list supplier setelah update
+    return redirect()->route('master-data.suppliers')->with('success', 'Supplier updated successfully!');
+}
+
 }

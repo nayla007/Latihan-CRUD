@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nomor_telepon">Phone Number</label>
-                    <input type="text" name="nomor_telepon" class="form-control" id="nomor_telepon" value="{{ old('nomor_telepon', $supplier->nomor_telepon) }}" required>
+                    <label for="nomor_handphone">Phone Number</label>
+                    <input type="text" name="nomor_handphone" class="form-control" id="nomor_handphone" value="{{ old('nomor_handphone', $supplier->nomor_handphone) }}" required>
                 </div>
 
                 <button type="submit" class="btn btn-success">Update</button>

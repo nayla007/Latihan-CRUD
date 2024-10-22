@@ -21,7 +21,7 @@ class Material extends Model
         'harga',  // Pastikan 'harga' ada dalam fillable
         'unit',
         'part_number',
-        'deksripsi',
+        'deskripsi',
         'created_at',
         'updated_at',
     ];

@@ -37,9 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($purchaseOrders as $order)
+                    @foreach($purchaseOrders as $index => $order)
                         <tr>
-                            <td>{{ $order->id }}</td>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $order->nama_pembelian }}</td>
                             <td>{{ $order->jumlah_pembelian }}</td>
                             <td>{{ $order->tanggal }}</td>
@@ -52,7 +52,7 @@
                                 <form action="{{ route('master-data.delete_purchase_order', $order->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Container\Attributes\Log;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('suppliers', function (Blueprint $table) {
-            $table->unique(['nama', 'alamat', 'email', 'nomor_telepon']);
+            $table->unique(['nama', 'alamat', 'email', 'nomor_handphone']);
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('suppliers', function (Blueprint $table) {
-            $table->dropUnique(['nama', 'alamat', 'email', 'nomor_telepon']);
+            
         });
     }
 };

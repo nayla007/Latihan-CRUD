@@ -37,22 +37,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($materials as $material)
+                    @foreach($materials as $index => $material)
                         <tr>
-                            <td>{{ $material->id }}</td>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $material->nama_material }}</td>
                             <td>{{ $material->unit }}</td>
                             <td>{{ number_format($material->harga, 0, ',', '.') }}</td>
                             <td>{{ $material->brand }}</td>
                             <td>{{ $material->part_number }}</td>
-                            <td>{{ Str::limit($material->deskripsi, 50) }}</td>
+                            <td>{{ $material->deskripsi }}</td>
                             <td>
                                 <a href="{{ route('master-data.edit_material', $material->id) }}" class="btn btn-warning">Edit</a>
                                 
                                 <form action="{{ route('master-data.delete_material', $material->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus material ini?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

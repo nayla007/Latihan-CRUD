@@ -22,6 +22,17 @@ class MasterDataController extends Controller
     public function createUser()
     {
         return view('masterdata.create_user');
+        $maxId = User::max('id');
+        $newId = $maxId + 1;
+
+        // Simpan data baru dengan ID manual
+    User::create([
+        'id' => $newId,
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'email' => $request->email,
+        'nomor_handphone' => $request->nomor_handphone,
+    ]);
     }
 
     public function editUser($id)   
@@ -30,7 +41,6 @@ class MasterDataController extends Controller
 
     // Debug dengan dd untuk memeriksa apakah data supplier benar-benar diteruskan
     
-
     return view('masterdata.edit_user', compact('user'));
 }
 
@@ -57,30 +67,35 @@ class MasterDataController extends Controller
     }
 
     // Fungsi untuk mengupdate data user
-    public function updateUser(Request $request, $id)
-    {
-        // Validasi inputan
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'nomor_handphone' => 'nullable|string|max:15', // Validasi nomor telepon
-            'alamat' => 'required|string|max:255',
-        ]);
+public function updateUser(Request $request, $id)
+{
+    // Validasi inputan
+    $validated = $request->validate([
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $id,
+        'nomor_handphone' => 'nullable|string|max:15',
+        'alamat' => 'required|string',
+    ]);
 
-        // Cari user berdasarkan ID
-        $user = User::findOrFail($id);
+    // Debug untuk memastikan data yang diterima
+    dd($validated);
 
-        // Update data user
-        $user->name = $validated['nama'];
-        $user->email = $validated['email'];
-        $user->nomor_handphone = $validated['nomor_handphone']; // Simpan nomor telepon
+    // Cari user berdasarkan ID
+    $user = User::findOrFail($id);
 
-        // Simpan perubahan
-        $user->save();
+    // Update data user
+    $user->nama = $validated['nama'];
+    $user->alamat = $validated['alamat'];
+    $user->email = $validated['email'];
+    $user->nomor_handphone = $validated['nomor_handphone'];
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('master-data.user')->with('success', 'User updated successfully!');
+    // Simpan perubahan
+    $user->save();
+
+    // Redirect dengan pesan sukses
+    return redirect()->route('master-data.user')->with('success', 'User updated successfully!');
 }
+
     // Menampilkan data supplier
     public function showSuppliers()
     {
@@ -92,6 +107,17 @@ class MasterDataController extends Controller
     public function createSupplier()
     {
         return view('masterdata.create_supplier');
+
+        $newId = $maxId + 1;
+
+        // Simpan data baru dengan ID manual
+    Supplier::create([
+        'id' => $newId,
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'email' => $request->email,
+        'nomor_handphone' => $request->nomor_handphone,
+    ]);
     }
 
     // Menyimpan data supplier baru
@@ -101,7 +127,7 @@ class MasterDataController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'email' => 'required|email',
-            'nomor_telepon' => 'required|string|max:255',
+            'nomor_handphone' => 'required|string',
         ]);
 
         // Simpan data supplier 
@@ -109,7 +135,7 @@ class MasterDataController extends Controller
             'nama' => $request->nama, 
             'alamat' => $request->alamat, 
             'email' => $request->email, 
-            'nomor_telepon' => $request->nomor_telepon, 
+            'nomor_handphone' => $request->nomor_handphone, 
             'created_at' => now(), 
             'updated_at' => now(), 
         ]);
@@ -128,6 +154,19 @@ class MasterDataController extends Controller
     public function createMaterial()
     {
         return view('masterdata.create_material');
+
+        $newId = $maxId + 1;
+
+        // Simpan data baru dengan ID manual
+    Material::create([
+        'id' => $newId,
+        'nama_material' => $request->nama_material,
+        'unit' => $request->unit,
+        'harga' => $request->harga,
+        'brand' => $request->brand,
+        'part_number' => $request->part_number,
+        'deskripsi' => $request->deskripsi,
+    ]);
     }
 
     // Menyimpan data material baru
@@ -174,6 +213,19 @@ class MasterDataController extends Controller
         $purchaseOrder->supplier_id = 1;
         $purchaseOrder->deskripsi = 'Deskripsi Baru';
         $purchaseOrder->save();
+
+        $newId = $maxId + 1;
+
+        // Simpan data baru dengan ID manual
+    PurchaseOrder::create([
+        'id' => $newId,
+        'nama_pembelian' => $request->nama_pembelian,
+        'jumlah_pembelian' => $request->jumlah_pembelian,
+        'tanggal' => $request->tanggal,
+        'material_id' => $request->material_id,
+        'supplier_id' => $request->supplier_id,
+        'deskripsi' => $request->deskripsi,
+    ]);
 
         return redirect()->route('master-data.purchase_order')->with('success', 'Purchase Order berhasil dibuat dan ID dimulai dari 1.');
     }
@@ -228,4 +280,16 @@ class MasterDataController extends Controller
 
         return redirect()->route('master-data.purchase-order')->with('success', 'All Purchase Orders have been reset and a new one has been created.');
     }
+
+    public function editPurchaseOrder($id)   
+{
+    $purchaseOrder = PurchaseOrder::findOrFail($id);
+
+    // Ambil semua material dan supplier untuk dropdown
+    $materials = Material::all();
+    $suppliers = Supplier::all();
+    
+
+    return view('masterdata.edit_order', compact('purchaseOrder', 'materials', 'suppliers'));
+}
 }

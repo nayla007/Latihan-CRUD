@@ -37,9 +37,10 @@
                     <input type="text" name="nomor_handphone" class="form-control" id="nomor_handphone" value="{{ old('nomor_handphone', $user->nomor_handphone) }}" required>
                 </div>
 
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success">Update</a></button>
                 <a href="{{ route('master-data.user') }}" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>
 @stop
+

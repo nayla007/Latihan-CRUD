@@ -36,16 +36,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($suppliers as $supplier)
+            @foreach ($suppliers as $index => $supplier)
                 <tr>
-                    <td>{{ $supplier->id }}</td>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $supplier->nama }}</td>
                     <td>{{ $supplier->alamat }}</td>
                     <td>{{ $supplier->email }}</td>
-                    <td>{{ $supplier->nomor_telepon }}</td>
+                    <td>{{ $supplier->nomor_handphone }}</td>
                     <td>
                         <!-- Tombol Edit -->
-                        <a href="{{ route('master-data.edit_supplier', ['id' => $supplier->id]) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('master-data.edit_supplier', $supplier->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                         
                         <!-- Tombol Delete -->

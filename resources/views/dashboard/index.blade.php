@@ -1,190 +1,243 @@
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
+
+<!-- Custom Styles -->
 <link rel="stylesheet" href="{{ asset('resources/css/custom.css') }}">
 
 @section('content_header')
-    <h1>Welcome To My Dashboard</h1>
+    <h1 class="text-center font-weight-bold text-dark">Welcome to Your Dashboard</h1>
 @stop
 
 @section('content')
 <div class="row">
     <!-- Total Users Card -->
-    <div class="col-lg-3 col-md-4 col-sm-6">  <!-- Menyesuaikan ukuran kolom -->
-        <div class="small-box bg-info" style="height: 150px;">
-            <div class="inner">
-                <h3>{{ $userCount }}</h3>
-                <p>Total Users</p>
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="small-box bg-gradient-primary shadow-lg rounded-3">
+            <div class="inner p-4">
+                <h3 class="font-weight-bold text-white">{{ $userCount }}</h3>
+                <p class="text-uppercase font-weight-bold text-white">Total Users</p>
             </div>
-            <div class="icon">
-                <i class="fas fa-users"></i>
+            <div class="icon top-50 start-50 translate-middle">
+                <i class="fas fa-users fa-3x text-white"></i>
             </div>
-            <a href="{{ route('master-data.user') }}" class="btn btn-secondary">Go to Users</a>
-
+            <a href="{{ route('master-data.user') }}" class="btn btn-light w-100 mt-3 py-2 text-uppercase">Go to Users</a>
         </div>
     </div>
 
-        <!-- Total Suppliers Card -->
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-success" style="height: 150px;">
-                <div class="inner">
-                    <h3>{{ $supplierCount }}</h3>
-                    <p>Total Suppliers</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-truck"></i>
-                </div>
-                <a href="{{ route('master-data.supplier') }}" class="btn btn-secondary">Go to Users</a>
-
+    <!-- Total Suppliers Card -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="small-box bg-gradient-success shadow-lg rounded-3">
+            <div class="inner p-4">
+                <h3 class="font-weight-bold text-white">{{ $supplierCount }}</h3>
+                <p class="text-uppercase font-weight-bold text-white">Total Suppliers</p>
             </div>
-        </div>
-
-        <!-- Total Materials Card -->
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning" style="height: 150px;">
-                <div class="inner">
-                    <h3>{{ $materialCount }}</h3>
-                    <p>Total Materials</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <a href="{{ route('master-data.material') }}" class="btn btn-secondary">Go to Users</a>
+            <div class="icon top-50 start-50 translate-middle">
+                <i class="fas fa-truck fa-3x text-white"></i>
             </div>
-        </div>
-
-        <!-- Total Purchase Orders Card -->
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger" style="height: 150px;">
-                <div class="inner">
-                    <h3>{{ $purchaseOrderCount }}</h3>
-                    <p>Total Purchase Orders</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-box"></i>
-                </div>
-                <a href="{{ route('master-data.purchase_order') }}" class="btn btn-secondary">Go to Users</a>
-
-            </div>
+            <a href="{{ route('master-data.supplier') }}" class="btn btn-light w-100 mt-3 py-2 text-uppercase">Go to Suppliers</a>
         </div>
     </div>
 
-    <!-- Chart for Summary Data -->
-    <div class="row">
-        <div class="col-md-12">
-            <canvas id="myChart" style="width: 100%; height: 250px; max-height: 500px;"></canvas>
+    <!-- Total Materials Card -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="small-box bg-gradient-warning shadow-lg rounded-3">
+            <div class="inner p-4">
+                <h3 class="font-weight-bold text-white">{{ $materialCount }}</h3>
+                <p class="text-uppercase font-weight-bold text-white">Total Materials</p>
+            </div>
+            <div class="icon top-50 start-50 translate-middle">
+                <i class="fas fa-cogs fa-3x text-white"></i>
+            </div>
+            <a href="{{ route('master-data.material') }}" class="btn btn-light w-100 mt-3 py-2 text-uppercase">Go to Materials</a>
         </div>
     </div>
 
-    <!-- Pie Chart for Category Distribution -->
-    <div class="row">
-        <div class="col-md-6">
-            <canvas id="pieChart" style="width: 25px; height: 20px;"></canvas>
-        </div>
-
-        <!-- Line Chart for Users Trend -->
-        <div class="col-md-6">
-            <canvas id="lineChart"></canvas>
+    <!-- Total Purchase Orders Card -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="small-box bg-gradient-danger shadow-lg rounded-3">
+            <div class="inner p-4">
+                <h3 class="font-weight-bold text-white">{{ $purchaseOrderCount }}</h3>
+                <p class="text-uppercase font-weight-bold text-white">Total Purchase Orders
+                    
+                </p>
+            </div>
+            <div class="icon top-50 start-50 translate-middle">
+                <i class="fas fa-box fa-3x text-white"></i>
+            </div>
+            <a href="{{ route('master-data.purchase_order') }}" class="btn btn-light w-100 mt-3 py-2 text-uppercase">
+                Go to Purchase Orders</a>
         </div>
     </div>
+</div>
+
+<!-- Total Products Card -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="small-box bg-gradient-info shadow-lg rounded-3">
+            <div class="inner p-4 text-white">
+                <h3 class="font-weight-bold">{{ $productsCount }}</h3>
+                <p class="text-uppercase font-weight-bold">Total Products</p>
+            </div>
+            <div class="icon top-50 start-50 translate-middle">
+                <i class="fas fa-tags fa-3x text-white"></i>
+            </div>
+            <a href="{{ route('products.index') }}" class="btn btn-light w-100 mt-3 py-2 text-uppercase">Go to Products</a>
+        </div>
+    </div>
+</div>
+
+<!-- Chart for Summary Data -->
+<div class="row mb-5">
+    <div class="col-md-12">
+        <canvas id="myChart" style="height: 400px;"></canvas>
+    </div>
+</div>
+
+<!-- Pie Chart for Category Distribution -->
+<div class="row mb-4">
+    <div class="col-md-6 mb-4">
+        <canvas id="pieChart" style="height: 30px; width: 30px;"></canvas>
+    </div>
+
+    <!-- Line Chart for Users Trend -->
+    <div class="col-md-6 mb-4">
+        <canvas id="lineChart" style="height: 350px;"></canvas>
+    </div>
+</div>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
+    <style>
+        .small-box {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            justify-content: space-between;
+        }
+
+        .small-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(to right, 
+            #2980b9, 
+            #2c3e50) !important;
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(to right, #00b09b, #96c93d) !important;
+        }
+
+        .bg-gradient-warning {
+            background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
+        }
+
+        .bg-gradient-danger {
+            background: linear-gradient(to right, #ff4b1f, #ff9068) !important;
+        }
+
+        .bg-gradient-info {
+            background: linear-gradient(to right,
+            #8e0e00, 
+            #1f1c18) !important;
+        }
+
+        .icon i {
+            opacity: 0.5; /* Ikon akan menjadi 80% transparan */
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            z-index: 10;
+            
+        }
+
+        .small-box .inner {
+            position: relative;
+            z-index: 1; /* Memberikan prioritas pada teks agar tidak tertutup ikon */
+            
+        }
+
+
+
+    </style>
 @stop
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        // Bar Chart for Summary Data
         var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar', // Tipe chart adalah bar
-    data: {
-        labels: ['Users', 'Suppliers', 'Materials', 'Purchase Orders'], // Label data
-        datasets: [{
-            label: 'Total',
-            data: [{{ $userCount }}, {{ $supplierCount }}, {{ $materialCount }}, {{ $purchaseOrderCount }}], // Data yang ditampilkan
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',  // Blue for Users
-                'rgba(75, 192, 192, 0.2)',  // Green for Suppliers
-                'rgba(255, 159, 64, 0.2)',  // Orange for Materials
-                'rgba(255, 99, 132, 0.2)'   // Red for Purchase Orders
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',  // Blue for Users
-                'rgba(75, 192, 192, 1)',  // Green for Suppliers
-                'rgba(255, 159, 64, 1)',  // Orange for Materials
-                'rgba(255, 99, 132, 1)'   // Red for Purchase Orders
-            ],
-            borderWidth: 1 // Lebar border pada batang
-        }]
-    },
-    options: {
-        responsive: true, // Menyusun chart responsif
-        maintainAspectRatio: false, // Agar chart mengatur ukurannya berdasarkan lebar dan tinggi
-        scales: {
-            x: {
-                beginAtZero: true,
-                grid: {
-                    display: false // Menghilangkan grid pada sumbu x
-                }
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Users', 'Suppliers', 'Materials', 'Purchase Orders', 'Products'],
+                datasets: [{
+                    label: 'Total',
+                    data: [{{ $userCount }}, {{ $supplierCount }}, {{ $materialCount }}, {{ $purchaseOrderCount }},{{ $productsCount }}],
+                    backgroundColor: [
+                        '#4facfe',  // Blue for Users
+                        '#00b09b',  // Green for Suppliers
+                        '#ff7e5f',  // Orange for Materials
+                        '#ff4b1f',  // Red for Purchase Orders
+                        '#3ec1c0'   // Teal for Products
+                    ],
+                    borderColor: [
+                        '#4facfe',
+                        '#00b09b',
+                        '#ff7e5f',
+                        '#ff4b1f',
+                        '#3ec1c0'
+                    ],
+                    borderWidth: 1
+                }]
             },
-            y: {
-                beginAtZero: true,
-                grid: {
-                    display: true, // Menampilkan grid pada sumbu y
-                    color: 'rgba(0, 0, 0, 0.1)' // Memberikan warna grid yang lebih soft
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
                 }
             }
-        },
-        plugins: {
-            legend: {
-                position: 'top', // Menempatkan legend di atas chart
-                labels: {
-                    boxWidth: 15, // Ukuran kotak di legend
-                    font: {
-                        size: 14, // Ukuran font pada label legend
-                    }
-                }
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw; // Menampilkan label dengan nilai
-                    }
-                }
-            }
-        },
-        barPercentage: 0.5, // Mengatur lebar batang agar tidak terlalu lebar
-        categoryPercentage: 0.8 // Mengatur jarak antar kategori
-    }
-});
-
+        });
 
         // Pie Chart for Distribution
         var ctx = document.getElementById('pieChart').getContext('2d');
-var pieChart = new Chart(ctx, {
-    type: 'pie', // Tipe chart adalah 'pie'
-    data: {
-        labels: ['Users', 'Suppliers', 'Materials', 'Orders'],
-        datasets: [{
-            data: [{{ $userCount }}, {{ $supplierCount }}, {{ $materialCount }}, {{ $purchaseOrderCount }}],
-            backgroundColor: ['#36A2EB', '#FF9F40', '#FFCD56', '#4BC0C0'],
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutoutPercentage: 50, // Mengubah ukuran lingkaran (default: 50%)
-        radius: '100%', // Mengatur ukuran lingkaran secara keseluruhan
-        plugins: {
-            legend: {
-                position: 'top',
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Users', 'Suppliers', 'Materials', 'Orders', 'Products'],
+                datasets: [{
+                    data: [{{ $userCount }}, {{ $supplierCount }}, {{ $materialCount }}, {{ $purchaseOrderCount }}, {{ $productsCount }}],
+                    backgroundColor: ['#4facfe', '#ff7e5f', '#ff9068', '#00b09b', '#3ec1c0'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+                
             }
-        }
-    }
-});
-        // Line Chart for Users Trend (Example, you could replace this with actual time series data)
+        });
+
+        // Line Chart for Users Trend
         var ctxLine = document.getElementById('lineChart').getContext('2d');
         var lineChart = new Chart(ctxLine, {
             type: 'line',
@@ -192,9 +245,9 @@ var pieChart = new Chart(ctx, {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 datasets: [{
                     label: 'Users Trend',
-                    data: [12, 19, 3, 5, 2, 3], // This is sample data; replace with actual trend data
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderColor: '#00b09b',
+                    backgroundColor: 'rgba(0, 176, 155, 0.2)',
                     fill: true,
                     tension: 0.1
                 }]

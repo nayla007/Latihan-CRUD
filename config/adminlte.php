@@ -387,6 +387,25 @@ return [
             ],
         ],
     ],
+
+    [
+        'text' => 'Products',
+        'icon' => 'fas fa-tags',
+        'submenu' => [
+            [
+                'text' => 'Product List',
+                'url'  => '/products',
+                'icon' => 'fas fa-clipboard-list',
+            ],
+            [
+                'text' => 'Create Product',
+                'url'  => 'master-data/supplier/create',
+                'icon' => 'fas fa-plus-circle',
+            ],
+        ],
+    ],
+
+
         ['header' => 'labels'],
         [
             'text' => 'important',

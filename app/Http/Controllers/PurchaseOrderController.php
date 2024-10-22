@@ -15,7 +15,7 @@ class PurchaseOrderController extends Controller
     $purchaseOrders = PurchaseOrder::with(['material', 'supplier'])->get();
     return view('masterdata.purchase_orders', compact('purchaseOrders'));  // pastikan view ini ada
    }
-
+   
    // Menampilkan form untuk menambah Purchase Order
    
 }

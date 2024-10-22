@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterDataController;
 use App\Http\Controllers\MaterialController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Master Data Routes
 Route::prefix('master-data')->group(function() {
@@ -15,8 +16,8 @@ Route::prefix('master-data')->group(function() {
     Route::get('user', [MasterDataController::class, 'showUsers'])->name('master-data.user');
     Route::get('user/create', [MasterDataController::class, 'createUser'])->name('master-data.create_user');
     Route::post('user', [MasterDataController::class, 'storeUser'])->name('users.store');
-    Route::get('user/{id}/edit', [MasterDataController::class, 'editUser'])->name('master-data.edit_user');
-    Route::put('user/{id}/update', [MasterDataController::class, 'updateUser'])->name('master-data.update_user');
+    Route::get('user/{id}/edit', [MasterDataController::class, 'edit'])->name('master-data.edit_user');
+    Route::put('user/{id}/update', [MasterDataController::class, 'update'])->name('master-data.update_user');
     Route::delete('user/{id}', [MasterDataController::class, 'destroyUser'])->name('master-data.delete_user');
 
     // Supplier Routes
@@ -24,7 +25,7 @@ Route::prefix('master-data')->group(function() {
     Route::get('supplier/create', [MasterDataController::class, 'createSupplier'])->name('master-data.create_supplier');
     Route::post('supplier', [MasterDataController::class, 'storeSupplier'])->name('suppliers.store');
     Route::get('supplier/{id}/edit', [SupplierController::class, 'edit'])->name('master-data.edit_supplier');
-    Route::put('supplier/{id}/update', [SupplierController::class, 'update'])->name('master-data.update_supplier');
+    Route::put('supplier/{id}', [SupplierController::class, 'update'])->name('master-data.update_supplier');
     Route::delete('/suppliers/reset', [SupplierController::class, 'deleteSuppliers'])->name('suppliers.reset');
     Route::delete('{id}', [SupplierController::class, 'destroy'])->name('master-data.destroy_supplier');
     Route::put('{id}/update', [SupplierController::class, 'update'])->name('suppliers.update');
@@ -47,3 +48,5 @@ Route::prefix('master-data')->group(function() {
     Route::get('master-data/purchase-order/create-reset', [MasterDataController::class, 'createPurchaseOrder'])->name('purchase_orders.create_reset');
 Route::get('master-data/purchase-order/reset', [MasterDataController::class, 'resetPurchaseOrders'])->name('purchase_orders.reset');
 });
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');

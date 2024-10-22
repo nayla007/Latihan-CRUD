@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Product;
 use App\Models\PurchaseOrder;
 use App\Models\Supplier;
 use App\Models\User;
@@ -16,13 +17,15 @@ class DashboardController extends Controller
     $supplierCount = Supplier::count();
     $materialCount = Material::count();
     $purchaseOrderCount = PurchaseOrder::count();
+    $productsCount = Product::count();
 
     // Mengirim data ke view
     return view('dashboard.index', compact(
         'userCount',
         'supplierCount',
         'materialCount',
-        'purchaseOrderCount'
+        'purchaseOrderCount',
+        'productsCount'
     ));
 }
 }

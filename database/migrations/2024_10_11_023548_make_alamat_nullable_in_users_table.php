@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('alamat')->nullable()->change();  // Membuat alamat bisa null
+            $table->dropColumn('alamat');  // Membuat alamat bisa null
         });
     }
 };
