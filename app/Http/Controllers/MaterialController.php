@@ -27,6 +27,7 @@ class MaterialController extends Controller
 
         $material = Material::findOrFail($id);
         $material->update($request->all());
+        
 
         return redirect()->route('master-data.material')->with('success', 'Material updated successfully.');
     }

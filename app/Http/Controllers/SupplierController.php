@@ -42,11 +42,51 @@ class SupplierController extends Controller
         // Kembali ke halaman daftar supplier dengan pesan sukses
         return redirect()->route('master-data.supplier')->with('success', 'Suppliers deleted and IDs reset.');
     }
-    // Menyimpan data supplier baru
-    public function store(Request $request)
+    /// Menampilkan data supplier
+    public function index()
     {
-        Supplier::create($request->all());
-        return redirect()->route('master-data.supplier')->with('success', 'Supplier berhasil ditambahkan');
+        $suppliers = Supplier::all();
+        return view('masterdata.suppliers', compact('suppliers'));
+    }
+
+    // Menampilkan form untuk menambah supplier
+    public function createSupplier()
+    {
+        return view('masterdata.create_supplier');
+
+        $newId = $maxId + 1;
+
+        // Simpan data baru dengan ID manual
+    Supplier::create([
+        'id' => $newId,
+        'nama' => $request->nama,
+        'alamat' => $request->alamat,
+        'email' => $request->email,
+        'nomor_handphone' => $request->nomor_handphone,
+    ]);
+    }
+
+    // Menyimpan data supplier baru
+    public function storeSupplier(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'email' => 'required|email',
+            'nomor_handphone' => 'required|string',
+        ]);
+
+        // Simpan data supplier 
+        Supplier::create([ 
+            'nama' => $request->nama, 
+            'alamat' => $request->alamat, 
+            'email' => $request->email, 
+            'nomor_handphone' => $request->nomor_handphone, 
+            'created_at' => now(), 
+            'updated_at' => now(), 
+        ]);
+
+        return redirect()->route('master-data.suppliers')->with('success', 'Supplier created successfully.');
     }
     // Menghapus supplier
     public function destroy($id)
@@ -55,31 +95,39 @@ class SupplierController extends Controller
         $supplier->delete();
         return redirect()->route('master-data.supplier')->with('success', 'Supplier berhasil dihapus');
     }
-    // Menampilkan form edit supplier
-    // Menampilkan form edit supplier
     public function edit($id)
-{
-    // Cari supplier berdasarkan ID
-    $supplier = Supplier::findOrFail($id);
-    
-    return view('masterdata.edit_supplier', compact('supplier'));
-}
+    {
+        $supplier = Supplier::findOrFail($id);
+        return view('masterdata.edit_supplier', compact('supplier'));
+    }
 
-public function update(Request $request, $id)
-{
+    public function update(Request $request, $id)
+    {
+        // Debug rute dan metode
+    dd($request->method(), $request->path());
+        // Hanya ID 6 yang bisa di-update
+
         // Validasi dan update material
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'nomor_handphone' => 'nullable|string|max:15',
-            'alamat' => 'required|string',
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email|unique:suppliers,email,' . $id,
+        'nomor_handphone' => 'nullable|string|max:15',
+        'alamat' => 'required|string',
         ]);
 
         $supplier = Supplier::findOrFail($id);
         $supplier->update($request->all());
+        
+        // Jika menggunakan AJAX, kirimkan response JSON
+    
 
-    // Redirect ke halaman list supplier setelah update
-    return redirect()->route('master-data.suppliers')->with('success', 'Supplier updated successfully!');
-}
+        return redirect()->route('master-data.supplier')->with('success', 'Material updated successfully.');
+    }
 
+    // Menampilkan data supplier
+    public function showSuppliers()
+    {
+        $suppliers = Supplier::all();
+        return view('masterdata.suppliers', compact('suppliers'));
+    }
 }

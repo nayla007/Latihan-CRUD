@@ -43,3 +43,26 @@
         </div>
     </div>
 @stop
+
+<!-- Script untuk AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$.ajax({
+    url: '/master-data/supplier/' + supplierId, // Ganti dengan ID supplier yang sesuai
+    type: 'PUT', // Pastikan ini PUT, bukan POST
+    data: {
+        _token: '{{ csrf_token() }}',  // Token CSRF Laravel
+        nama: $('#nama').val(),
+        alamat: $('#alamat').val(),
+        email: $('#email').val(),
+        nomor_handphone: $('#nomor_handphone').val(),
+    },
+    success: function(response) {
+        alert('Supplier updated successfully');
+        window.location.href = '/master-data/supplier'; // Redirect ke halaman list setelah berhasil
+    },
+    error: function(xhr, status, error) {
+        alert('Error updating supplier: ' + error);
+    }
+});
+</script>

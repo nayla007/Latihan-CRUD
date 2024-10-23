@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MasterDataController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SupplierController;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
@@ -21,7 +22,7 @@ Route::prefix('master-data')->group(function() {
     Route::delete('user/{id}', [MasterDataController::class, 'destroyUser'])->name('master-data.delete_user');
 
     // Supplier Routes
-    Route::get('supplier', [MasterDataController::class, 'showSuppliers'])->name('master-data.supplier');
+    Route::get('supplier', [SupplierController::class, 'showSuppliers'])->name('master-data.supplier');
     Route::get('supplier/create', [MasterDataController::class, 'createSupplier'])->name('master-data.create_supplier');
     Route::post('supplier', [MasterDataController::class, 'storeSupplier'])->name('suppliers.store');
     Route::get('supplier/{id}/edit', [SupplierController::class, 'edit'])->name('master-data.edit_supplier');

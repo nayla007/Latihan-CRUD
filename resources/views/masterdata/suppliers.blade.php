@@ -13,6 +13,12 @@
         </div>
     @endif
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <!-- Tombol Create Supplier -->
     <a href="{{ route('master-data.create_supplier') }}" class="btn btn-primary mb-3">Tambah Supplier</a>
 

@@ -97,7 +97,7 @@ public function updateUser(Request $request, $id)
 }
 
     // Menampilkan data supplier
-    public function showSuppliers()
+    public function inde()
     {
         $suppliers = Supplier::all();
         return view('masterdata.suppliers', compact('suppliers'));
