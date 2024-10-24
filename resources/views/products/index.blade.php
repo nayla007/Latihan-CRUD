@@ -21,7 +21,7 @@
             object-fit: cover;
         }
         .card{
-           width: 2000px;
+           width: 1500px;
         }
     </style>
 @stop
@@ -51,7 +51,6 @@
                             <th>Category</th>
                             <th>Thumbnail</th>
                             <th>Images</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="productsList">
@@ -78,11 +77,7 @@
                                     <img src="{{ $image }}" class="img-small" onerror="this.src='https://via.placeholder.com/50?text=No+Image'" /> 
                                     @endforeach
                                 </td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm">Edit</button>
-                                    <button class="btn btn-danger ">
-                                        <i class="fa fa-trash"></i> Delete</button>
-                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -144,10 +139,6 @@ $(document).ready(function() {
                         ${product.images.map(image => {
                             return `<img src="${image}" class="img-small" onerror="this.src='https://via.placeholder.com/50?text=No+Image'" />`;
                         }).join('')}
-                    </td>
-                    <td>
-                        <button class="btn btn-warning" onclick="editProduct(${product.id})">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteProduct(${product.id})">Delete</button>
                     </td>
                 </tr>
             `;
