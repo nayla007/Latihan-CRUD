@@ -30,8 +30,9 @@
                     <label for="nomor_handphone">Nomor handphone</label>
                     <input type="text" name="nomor_handphone" class="form-control" id="nomor_handphone" value="{{ old('nomor_handphone') }}" required>
                 </div>
-                <button type="submit" class="btn btn-success">Save</button>
-                <a href="{{ route('master-data.user') }}" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success fas fa-save"> Save</button>
+                <a href="{{ route('master-data.user') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Cancel</a>
             </form>
         </div>
     </div>

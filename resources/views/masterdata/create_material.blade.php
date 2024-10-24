@@ -38,8 +38,9 @@
                     <label for="deskripsi">Description</label>
                     <textarea name="deskripsi" class="form-control" id="deskripsi">{{ old('deskripsi') }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Save</button>
-                <a href="{{ route('master-data.material') }}" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success fas fa-save"> Save</button>
+                <a href="{{ route('master-data.material') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Cancel</a>
             </form>
         </div>
     </div>

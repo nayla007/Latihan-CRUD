@@ -14,6 +14,8 @@ class Material extends Model
         return $this->hasMany(PurchaseOrder::class);
     }
 
+    protected $table = 'materials';
+
     // Kolom yang boleh diisi
     protected $fillable = [
         'nama_material',

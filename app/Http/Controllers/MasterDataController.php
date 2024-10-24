@@ -77,9 +77,6 @@ public function updateUser(Request $request, $id)
         'alamat' => 'required|string',
     ]);
 
-    // Debug untuk memastikan data yang diterima
-    dd($validated);
-
     // Cari user berdasarkan ID
     $user = User::findOrFail($id);
 
@@ -292,4 +289,23 @@ public function updateUser(Request $request, $id)
 
     return view('masterdata.edit_order', compact('purchaseOrder', 'materials', 'suppliers'));
 }
+
+public function updatePurchaseOrder(Request $request, $id)
+    {
+        // Validasi dan update material
+        $request->validate([
+            'nama_pembelian' => 'required|string|max:255',
+            'jumlah_pembelian' => 'required|integer|min:1',
+            'tanggal' => 'required|date',
+            'material_id' => 'required|exists:materials,id',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'deskripsi' => 'nullable|string',
+        ]);
+
+        $purchaseOrder = PurchaseOrder::findOrFail($id);
+        $purchaseOrder->update($request->all());
+        
+
+        return redirect()->route('master-data.purchase_order')->with('success', 'orders updated successfully.');
+    }
 }

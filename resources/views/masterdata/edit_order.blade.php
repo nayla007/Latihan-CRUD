@@ -19,7 +19,7 @@
 
                 <!-- Nama Pembelian -->
                 <div class="form-group">
-                    <label for="nama_pembelian">Nama Pembelian</label>
+                    <label for="nama_pembelian">Nama Pembeli</label>
                     <input type="text" name="nama_pembelian" class="form-control" id="nama_pembelian" value="{{ old('nama_pembelian', $purchaseOrder->nama_pembelian) }}" required>
                 </div>
 
@@ -66,8 +66,10 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-success">Update</button>
-                <a href="{{ route('master-data.purchase_order') }}" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-sync"></i> Update</button>
+                <a href="{{ route('master-data.purchase_order') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Cancel</a>
             </form>
         </div>
     </div>

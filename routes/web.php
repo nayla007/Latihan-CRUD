@@ -17,8 +17,8 @@ Route::prefix('master-data')->group(function() {
     Route::get('user', [MasterDataController::class, 'showUsers'])->name('master-data.user');
     Route::get('user/create', [MasterDataController::class, 'createUser'])->name('master-data.create_user');
     Route::post('user', [MasterDataController::class, 'storeUser'])->name('users.store');
-    Route::get('user/{id}/edit', [MasterDataController::class, 'edit'])->name('master-data.edit_user');
-    Route::put('user/{id}/update', [MasterDataController::class, 'update'])->name('master-data.update_user');
+    Route::get('user/{id}/edit', [MasterDataController::class, 'editUser'])->name('master-data.edit_user');
+    Route::put('user/{id}/update', [MasterDataController::class, 'updateUser'])->name('master-data.update_user');
     Route::delete('user/{id}', [MasterDataController::class, 'destroyUser'])->name('master-data.delete_user');
 
     // Supplier Routes

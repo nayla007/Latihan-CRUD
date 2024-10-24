@@ -37,8 +37,10 @@
                     <input type="text" name="nomor_handphone" class="form-control" id="nomor_handphone" value="{{ old('nomor_handphone', $supplier->nomor_handphone) }}" required>
                 </div>
 
-                <button type="submit" class="btn btn-success">Update</button>
-                <a href="{{ route('master-data.supplier') }}" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-sync"></i> Update</button>
+                <a href="{{ route('master-data.supplier') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Cancel</a>
             </form>
         </div>
     </div>

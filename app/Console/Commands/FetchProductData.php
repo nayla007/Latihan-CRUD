@@ -38,8 +38,13 @@ class FetchProductData extends Command
 
         //check if the request was successful 
         if($response->successful()){
-            $products = $response->json()['products'];
-            $productsCount = count($products['products']); // Ambil jumlah produk
+            $responseData = $response->json();
+        
+            //check if 'products' key exists in the response
+
+            if (isset($responseData['products'])){
+                $products = $responseData['products'];
+           
 
             // Start a new ID for the products (e.g., start from 1)
         $newId = 1;
@@ -63,7 +68,10 @@ class FetchProductData extends Command
 
             $this->info('Product data Fetched and stored successfully!');
         }else{
-            $this->error('Failed to fetch product data from the API.');
+            $this->error('Products key not found in the API response');
+        }
+        }else{
+            $this->error('Failed to fetch product data from the API. Response status: '. $response->status());
             $productsCount = 0;
         }
     }

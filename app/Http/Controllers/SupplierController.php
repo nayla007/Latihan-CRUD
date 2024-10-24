@@ -103,25 +103,28 @@ class SupplierController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Debug rute dan metode
-    dd($request->method(), $request->path());
-        // Hanya ID 6 yang bisa di-update
-
-        // Validasi dan update material
-        $request->validate([
+        // Validasi inputan
+    $validated = $request->validate([
         'nama' => 'required|string|max:255',
-        'email' => 'required|email|unique:suppliers,email,' . $id,
+        'email' => 'required|email|unique:users,email,' . $id,
         'nomor_handphone' => 'nullable|string|max:15',
         'alamat' => 'required|string',
-        ]);
+    ]);
 
-        $supplier = Supplier::findOrFail($id);
-        $supplier->update($request->all());
-        
-        // Jika menggunakan AJAX, kirimkan response JSON
-    
+    // Cari user berdasarkan ID
+    $supplier = Supplier::findOrFail($id);
 
-        return redirect()->route('master-data.supplier')->with('success', 'Material updated successfully.');
+    // Update data user
+    $supplier->nama = $validated['nama'];
+    $supplier->alamat = $validated['alamat'];
+    $supplier->email = $validated['email'];
+    $supplier->nomor_handphone = $validated['nomor_handphone'];
+
+    // Simpan perubahan
+    $supplier->save();
+
+    // Redirect dengan pesan sukses
+    return redirect()->route('master-data.supplier')->with('success', 'Supplier updated successfully!');
     }
 
     // Menampilkan data supplier

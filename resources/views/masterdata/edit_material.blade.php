@@ -47,8 +47,10 @@
                     <textarea name="deskripsi" class="form-control" id="deskripsi">{{ old('deskripsi', $material->deskripsi) }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-success">Update</button>
-                <a href="{{ route('master-data.material') }}" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-sync"></i> Update</button>
+                <a href="{{ route('master-data.material') }}" class="btn btn-danger">
+                    <i class="fas fa-times"></i> Cancel</a>
             </form>
         </div>
     </div>

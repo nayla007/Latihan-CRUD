@@ -193,7 +193,7 @@ return [
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_content_wrapper' => 'custom-content-wrapper',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
@@ -201,6 +201,8 @@ return [
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -303,6 +305,7 @@ return [
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
+
         ],
 
 
@@ -426,6 +429,7 @@ return [
 
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
+    
 
     /*
     |--------------------------------------------------------------------------
