@@ -27,10 +27,6 @@
 @stop
 
 @section('content')
-<button class="btn btn-primary mb-3" id="addProductBtn">
-    <i class="fas fa-plus"></i> Add Product</button>
-<div class="col-md-12">
-    
     <div class="card">
     <div class="card-header">
         <h3 class="card-title">List of Products</h3>
@@ -104,7 +100,6 @@ $(document).ready(function() {
             // Adjust images size in the images column
             $('td:eq(10) img', row).addClass('img-small').css({ width: '70px', height: '70px', objectFit: 'cover' });
         }
-        
 
     });
 });
